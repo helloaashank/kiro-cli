@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Immutable Storage</title>
+    <style>
+        body { font-family: Arial; max-width: 400px; margin: 100px auto; padding: 20px; text-align: center; }
+        .auth-screen { display: none; }
+        .auth-screen.active { display: block; }
+        .main-app { display: none; max-width: 800px; }
+        .main-app.active { display: block; }
+        .upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; margin: 20px 0; }
+        .item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; background: #f9f9f9; text-align: left; }
+        textarea { width: 100%; height: 100px; }
+        input { padding: 10px; margin: 10px; width: 200px; font-size: 16px; }
+        button { padding: 10px 20px; margin: 10px 5px; font-size: 16px; }
+        .error { color: red; margin: 10px; }
+    </style>
+</head>
+<body>
+    <!-- Step 1: DOB -->
+    <div id="step1" class="auth-screen active">
+        <h2>Step 1: Date of Birth</h2>
+        <input type="text" id="dob" placeholder="DD/Month/YYYY" maxlength="20">
+        <br><button onclick="checkDOB()">Next</button>
+        <div id="error1" class="error"></div>
+    </div>
+
+    <!-- Step 2: Auth Code -->
+    <div id="step2" class="auth-screen">
+        <h2>Step 2: Authorization Code</h2>
+        <input type="text" id="authCode" placeholder="Enter 16-digit code" maxlength="16">
+        <br><button onclick="checkAuthCode()">Next</button>
+        <div id="error2" class="error"></div>
+    </div>
+
+    <!-- Step 3: 2FA -->
+    <div id="step3" class="auth-screen">
+        <h2>Step 3: Two-Factor Authentication</h2>
+        <input type="text" id="twoFA" placeholder="Enter 6-digit code" maxlength="6">
+        <br><button onclick="check2FA()">Access</button>
+        <div id="error3" class="error"></div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app">
+        <h1>Immutable Document Storage</h1>
+        
+        <div class="upload-area">
+            <input type="file" id="fileInput" multiple>
+            <p>Drop files here or click to select</p>
+        </div>
+        
+        <div>
+            <textarea id="textInput" placeholder="Enter text here..."></textarea>
+            <button onclick="addText()">Add Text</button>
+        </div>
+        
+        <div id="storage"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
